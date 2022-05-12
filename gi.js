@@ -16,7 +16,7 @@ function filter(range) {
     } else {
         document.getElementById("list").innerHTML = null
 
-        var videos_map = JSON.parse(map)
+        var videos_map = map
         if (Object.keys(videos_map).length > 1) {
             document.getElementById("no_videos").style.display = "none"
             document.getElementById("videos").style.display = "block"
