@@ -14,30 +14,23 @@ function filter(range) {
             add_video_into_list(video, videos_map[video].gi, videos_map[video].at, videos_map[video].views)
         }
     } else {
-        document.getElementById("list").innerHTML = null
-
         var videos_map = map
-        if (Object.keys(videos_map).length > 1) {
-            document.getElementById("no_videos").style.display = "none"
-            document.getElementById("videos").style.display = "block"
-        } else {
-            document.getElementById("no_videos").style.display = "block"
-            document.getElementById("videos").style.display = "none"
-        }
+
+        document.getElementById("list").innerHTML = null
         for (var video of Object.keys(videos_map)) {
-            if (video == "status") continue
             var upload_date = minusDays(videos_map[video].at)
             if (upload_date >= range[0] && upload_date < range[1]) {
                 add_video_into_list(video, videos_map[video].gi, videos_map[video].at, videos_map[video].views)
             }
 
         }
+
+
     }
 
 }
 
 $("#apply").click(function () {
-
     var range = {
         "1": [0, 1],
         "2": [1, 2],
@@ -55,7 +48,6 @@ $("#apply").click(function () {
         filter(range[value])
     } else {
         document.getElementById("list").innerHTML = null
-
         filter(0)
     }
 
