@@ -75,11 +75,9 @@ function minusDays(date) {
 }
 function add_video_into_list(video) {
     var url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${video}&format=json`
-    var thum = "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
     $.getJSON(url, function (json_data) {
-        thum = json_data["thumbnail_url"]
-    })
-    var code = `
+        var thum = json_data["thumbnail_url"]
+        var code = `
                     <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
                     <a target="_blank" href="https://www.youtube.com/watch?v=${video}">
@@ -101,6 +99,32 @@ function add_video_into_list(video) {
                     </div>
                 </div>
         `
-    document.getElementById("list").insertAdjacentHTML('beforeend', code)
+        document.getElementById("list").insertAdjacentHTML('beforeend', code)
+    }).fail(function () {
+        var thum = "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
+        var code = `
+                    <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                    <a target="_blank" href="https://www.youtube.com/watch?v=${video}">
+                        <img class="card-img-top"
+                            src="${thum}"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">${map[video].title}</p><br>
+                            <a href="${map[video].channel_link}">
+                            <p class="card-text"><b>${map[video].channel_name}</b></p></a>
+
+                            </a>
+                            <br>
+                            <div class="d-flex justify-content-between align-items-center">
+                            <small style="font-size:17px;" class="text-muted"><b>${map[video].views} & ${map[video].gi} GI</b> </small>
+                            <small style="font-size:17px;color:red" class="text-muted">${minusDays(map[video].date)} days ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        `
+        document.getElementById("list").insertAdjacentHTML('beforeend', code)
+    })
 
 }
