@@ -77,7 +77,7 @@ function minusDays(date) {
     return diffDays;
 }
 function add_video_into_list(video) {
-    var thum = `https://img.youtube.com/vi/${video}/maxresdefault.jpg`
+    var thum = `https://img.youtube.com/vi/${video}/default.jpg`
     var code = `
                     <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
