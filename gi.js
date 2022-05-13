@@ -74,12 +74,17 @@ function minusDays(date) {
     return diffDays;
 }
 function add_video_into_list(video) {
+    var url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${video}&format=json`
+    var thum = "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg"
+    $.getJSON(url, function (json_data) {
+        thum = json_data["thumbnail_url"]
+    })
     var code = `
                     <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
                     <a target="_blank" href="https://www.youtube.com/watch?v=${video}">
                         <img class="card-img-top"
-                            src="${map[video].img}"
+                            src="${thum}"
                             alt="Card image cap">
                         <div class="card-body">
                             <p class="card-text">${map[video].title}</p><br>
@@ -97,4 +102,5 @@ function add_video_into_list(video) {
                 </div>
         `
     document.getElementById("list").insertAdjacentHTML('beforeend', code)
+
 }
