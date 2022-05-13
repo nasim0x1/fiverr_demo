@@ -1,4 +1,5 @@
 filter(0)
+var error = []
 function filter(range) {
     if (range == 0) {
         var videos_map = map
@@ -13,18 +14,16 @@ function filter(range) {
             if (video == "status") continue
             add_video_into_list(video, videos_map[video].gi, videos_map[video].at, videos_map[video].views)
         }
+
     } else {
         var videos_map = map
-
         document.getElementById("list").innerHTML = null
         for (var video of Object.keys(videos_map)) {
             var upload_date = minusDays(videos_map[video].at)
             if (upload_date >= range[0] && upload_date < range[1]) {
                 add_video_into_list(video, videos_map[video].gi, videos_map[video].at, videos_map[video].views)
             }
-
         }
-
 
     }
 
@@ -89,6 +88,30 @@ function add_video_into_list(vid, gi, date, vies) {
                             <p class="card-text">${json_data["title"]}</p><br>
                             <a href="${json_data["author_url"]}">
                             <p class="card-text"><b>${json_data["author_name"]}</b></p></a>
+
+                            </a>
+                            <br>
+                            <div class="d-flex justify-content-between align-items-center">
+                            <small style="font-size:17px;" class="text-muted"><b>${vies} & ${gi} GI</b> </small>
+                            <small style="font-size:17px;color:red" class="text-muted">${minusDays(date)} days ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        `
+        document.getElementById("list").insertAdjacentHTML('beforeend', code)
+    }).fail(function () {
+        var code = `
+                    <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                    <a target="_blank" href="https://www.youtube.com/watch?v=${vid}">
+                        <img class="card-img-top"
+                            src=""
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">Api Failed To Load Video INFO</p><br>
+                            <a href="Api Failed To Load Video INFO">
+                            <p class="card-text"><b>Api Failed To Load Video INFO</b></p></a>
 
                             </a>
                             <br>
