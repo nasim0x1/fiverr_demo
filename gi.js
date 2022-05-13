@@ -93,7 +93,7 @@ function add_video_into_list(video) {
                             <br>
                             <div class="d-flex justify-content-between align-items-center">
                             <small style="font-size:17px;" class="text-muted"><b>${map[video].views} & ${map[video].gi} GI</b> </small>
-                            <small style="font-size:17px;color:red" class="text-muted">${minusDays(map[video].date)} days ago</small>
+                            <small style="font-size:17px;color:red" class="text-muted">${minusDays(map[video].at)} days ago</small>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@ function add_video_into_list(video) {
                             <br>
                             <div class="d-flex justify-content-between align-items-center">
                             <small style="font-size:17px;" class="text-muted"><b>${map[video].views} & ${map[video].gi} GI</b> </small>
-                            <small style="font-size:17px;color:red" class="text-muted">${minusDays(map[video].date)} days ago</small>
+                            <small style="font-size:17px;color:red" class="text-muted">${minusDays(map[video].at)} days ago</small>
                             </div>
                         </div>
                     </div>
