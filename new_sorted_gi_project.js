@@ -128,7 +128,9 @@ function init() {
     }
 }
 function minusDays(date) {
-    var diffTime = Math.abs(new Date() - new Date(date))
+   var pre = new Date();
+    pre.setDate(pre.getDate() - date);
+    var diffTime = Math.abs(new Date() - pre)
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays;
 }
